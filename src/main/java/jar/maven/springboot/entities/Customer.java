@@ -13,28 +13,28 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "CompanyName", nullable = false)
+    @Column(name = "CompanyName")
     private String CompanyName;
 
-    @Column(name = "FullNameCompanyContact", nullable = false)
+    @Column(name = "FullNameCompanyContact")
     private String FullNameCompanyContact;
 
-    @Column(name = "CompanyContactPhone", nullable = false)
+    @Column(name = "CompanyContactPhone")
     private String CompanyContactPhone;
 
-    @Column(name = "EmailCompanyContact", nullable = false)
+    @Column(name = "EmailCompanyContact")
     private String EmailCompanyContact;
 
-    @Column(name = "CompanyDescription", nullable = false)
+    @Column(name = "CompanyDescription")
     private String CompanyDescription;
 
-    @Column(name = "FullNameServiceTechnicalAuth", nullable = false)
+    @Column(name = "FullNameServiceTechnicalAuth")
     private String FullNameServiceTechnicalAuth;
 
-    @Column(name = "TechnicalAuthorityPhoneService", nullable = false)
+    @Column(name = "TechnicalAuthorityPhoneService")
     private String TechnicalAuthorityPhoneService;
 
-    @Column(name = "TechnicalManagerEmailService", nullable = false)
+    @Column(name = "TechnicalManagerEmailService")
     private String TechnicalManagerEmailService;
 
     @Column(name = "created_at")

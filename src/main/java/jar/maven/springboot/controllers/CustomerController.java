@@ -19,7 +19,7 @@ public class CustomerController {
         super();
         this.customerService = customerService;
     }
-    //Get all customers
+    // Get all customers //
     @GetMapping ("/all")
     public List<Customer> getAllCustomers(){
         return customerService.getAllCustomers();
@@ -31,6 +31,13 @@ public class CustomerController {
         return "test customer";
     }
 
+    // Get customer by id //
+    @GetMapping("{id}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable ("id") long id){
+        return new ResponseEntity<Customer>(customerService.getCustomerById(id), HttpStatus.OK);
+    }
+
+    // Create new customer //
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
         return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
     }
