@@ -4,14 +4,17 @@ import jar.maven.springboot.exceptions.ResourceNotFoundException;
 import jar.maven.springboot.entities.Interventions;
 import jar.maven.springboot.repositories.InterventionsRepository;
 import jar.maven.springboot.services.InterventionsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public abstract class InterventionsServiceImpl implements InterventionsService {
+public class InterventionsServiceImpl implements InterventionsService {
+
     private InterventionsRepository interventionsRepository;
 
+    @Autowired
     public InterventionsServiceImpl(InterventionsRepository interventionsRepository) {
         super();
         this.interventionsRepository = interventionsRepository;
@@ -33,12 +36,12 @@ public abstract class InterventionsServiceImpl implements InterventionsService {
         if (interventions.isPresent()) {
             return interventions.get();
         } else {
-            throw new ResourceNotFoundException("Intervention", "id", id);
+            throw new ResourceNotFoundException("interventions", "id", id);
         }
     }
 
     //@Override
-    public Interventions updatedInterventions(Interventions interventions, long id) {
+    public Interventions updatedIntervention(Interventions interventions, long id) {
         // check if intervention with id exists
         Interventions existingInterventions = interventionsRepository.findAllById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Intervention", "Id", id));

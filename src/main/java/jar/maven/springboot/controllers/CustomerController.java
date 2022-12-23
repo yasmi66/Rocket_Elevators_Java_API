@@ -38,7 +38,7 @@ public class CustomerController {
     }
 
     // Create new customer //
-    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
-        return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
-    }
+//    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
+//        return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
+//    }
 }

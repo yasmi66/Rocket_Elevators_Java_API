@@ -2,6 +2,7 @@ package jar.maven.springboot.controllers;
 
 import jar.maven.springboot.entities.Interventions;
 import jar.maven.springboot.services.InterventionsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequestMapping("/api/interventions")
 public class InterventionsController {
 
+    @Autowired
     private InterventionsService interventionsService;
 
     public InterventionsController(InterventionsService interventionsService) {
@@ -19,7 +21,7 @@ public class InterventionsController {
     }
 
     // Create new intervention //
-    @PostMapping(value="new")
+    @PostMapping(value="/new")
     public ResponseEntity<Interventions> saveInterventions(@RequestBody Interventions interventions){
         return new ResponseEntity<Interventions>(interventionsService.saveInterventions(interventions), HttpStatus.CREATED);
     }
@@ -33,23 +35,23 @@ public class InterventionsController {
     // Get intervention by id //
     //http://localhost:8080/api/interventions/1
     @GetMapping("{id}")
-    public ResponseEntity<Interventions> getInterventionById(@PathVariable ("id") long id){
+    public ResponseEntity<Interventions> getInterventionById(@PathVariable("id") long id){
         return new ResponseEntity<Interventions>(interventionsService.getInterventionById(id), HttpStatus.OK);
     }
 
     // Update intervention //
     //http://localhost:8080/api/interventions/update/1
-//    @PatchMapping(value="update/{id}")
-//    public ResponseEntity<Interventions> updateInterventions(@PathVariable ("id") long id, @RequestBody Interventions interventions){
-//        return new ResponseEntity<Interventions>(interventionsService.updatedIntervention(interventions, id), HttpStatus.OK);
-//    }
+    @PatchMapping(value="update/{id}")
+    public ResponseEntity<Interventions> updateInterventions(@PathVariable("id") long id, @RequestBody Interventions interventions){
+        return new ResponseEntity<Interventions>(interventionsService.updatedIntervention(interventions, id), HttpStatus.OK);
+    }
 
-    // Delete intervention //
+     //Delete intervention //
     //http://localhost:8080/api/interventions/delete/1
 
     @DeleteMapping(value="delete/{id}")
     public ResponseEntity<String> deleteIntervention(@PathVariable("id") long id){
         interventionsService.deleteIntervention(id);
-        return new ResponseEntity<String>("Intervention Deleted", HttpStatus.OK);
+        return new ResponseEntity<>("Intervention Deleted", HttpStatus.OK);
     }
 }
