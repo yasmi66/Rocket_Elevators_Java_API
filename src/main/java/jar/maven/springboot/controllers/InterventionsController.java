@@ -25,7 +25,7 @@ public class InterventionsController {
     }
 
     // Get all interventions //
-    @GetMapping()
+    @GetMapping("/all")
     public List<Interventions> getAllInterventions(){
         return interventionsService.getAllInterventions();
     }
