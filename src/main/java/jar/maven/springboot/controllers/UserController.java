@@ -19,15 +19,15 @@ public class UserController {
         this.userService = userService;
     }
 
-
-
-    // Get All Users //
+    // Get all users //
+    //http://localhost:8080/api/users/all
     @GetMapping("/all")
     public List<User> getAllUsers(){
+
         return userService.getAllUsers();
     }
 
-    // Get User By ID //
+    // Get user by id //
     //http://localhost:8080/api/users/1
     @GetMapping("{id}")
     public ResponseEntity<User> getUserById(@PathVariable ("id") long id){

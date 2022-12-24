@@ -5,7 +5,6 @@ import jar.maven.springboot.services.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -19,26 +18,32 @@ public class CustomerController {
         super();
         this.customerService = customerService;
     }
-    // Get all customers //
-    @GetMapping ("/all")
-    public List<Customer> getAllCustomers(){
-        return customerService.getAllCustomers();
-    }
 
-    // this is a test endpoint path for postman //
+    // this is a test endpoint path for postman -- done w. Felicia's help//
     @GetMapping ("/test")
     public String testCustomer(){
         return "test customer";
     }
 
+    // Get all customers //
+    //http://localhost:8080/api/customers/all
+    @GetMapping ("/all")
+    public List<Customer> getAllCustomers(){
+
+        return customerService.getAllCustomers();
+    }
+
     // Get customer by id //
+    //http://localhost:8080/api/customers/1
     @GetMapping("{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable ("id") long id){
         return new ResponseEntity<Customer>(customerService.getCustomerById(id), HttpStatus.OK);
     }
 
     // Create new customer //
-//    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
-//        return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
-//    }
+    //http://localhost:8080/api/customers/new
+    @PostMapping(value="new")
+    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
+        return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
+    }
 }

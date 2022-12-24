@@ -1,38 +1,83 @@
 package jar.maven.springboot.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.Collection;
 
 @Data
 @Entity
 @Table(name="users")
-public class User {
+@NoArgsConstructor
+@Getter
+@Setter
+public class User implements UserDetails {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column (name="id")
     private long id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "firstName")
-    private String first_name;
+    private String firstName;
 
-    @Column(name = "lastName")
-    private String last_name;
+    private String lastName;
 
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "encrypted_password")
+    @JsonIgnore
     private String encrypted_password;
 
-    @Column(name = "created_at")
+
     private String created_at;
 
-    @Column(name = "updated_at")
     private String updated_at;
 
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @JsonIgnore
+    @Override
+    public String getPassword() {
+        return encrypted_password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
+
+

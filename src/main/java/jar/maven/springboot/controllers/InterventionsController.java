@@ -2,7 +2,6 @@ package jar.maven.springboot.controllers;
 
 import jar.maven.springboot.entities.Interventions;
 import jar.maven.springboot.services.InterventionsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,6 @@ import java.util.List;
 @RequestMapping("/api/interventions")
 public class InterventionsController {
 
-    @Autowired
     private InterventionsService interventionsService;
 
     public InterventionsController(InterventionsService interventionsService) {
@@ -20,13 +18,8 @@ public class InterventionsController {
         this.interventionsService = interventionsService;
     }
 
-    // Create new intervention //
-    @PostMapping(value="/new")
-    public ResponseEntity<Interventions> saveInterventions(@RequestBody Interventions interventions){
-        return new ResponseEntity<Interventions>(interventionsService.saveInterventions(interventions), HttpStatus.CREATED);
-    }
-
     // Get all interventions //
+    //http://localhost:8080/api/interventions/all
     @GetMapping("/all")
     public List<Interventions> getAllInterventions(){
         return interventionsService.getAllInterventions();
@@ -37,6 +30,13 @@ public class InterventionsController {
     @GetMapping("{id}")
     public ResponseEntity<Interventions> getInterventionById(@PathVariable("id") long id){
         return new ResponseEntity<Interventions>(interventionsService.getInterventionById(id), HttpStatus.OK);
+    }
+
+    // Create new intervention //
+    //http://localhost:8080/api/interventions/new
+    @PostMapping(value="/new")
+    public ResponseEntity<Interventions> saveInterventions(@RequestBody Interventions interventions){
+        return new ResponseEntity<Interventions>(interventionsService.saveInterventions(interventions), HttpStatus.CREATED);
     }
 
     // Update intervention //
@@ -52,6 +52,6 @@ public class InterventionsController {
     @DeleteMapping(value="delete/{id}")
     public ResponseEntity<String> deleteIntervention(@PathVariable("id") long id){
         interventionsService.deleteIntervention(id);
-        return new ResponseEntity<>("Intervention Deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("Intervention Deleted", HttpStatus.OK);
     }
 }

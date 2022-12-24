@@ -19,12 +19,14 @@ public class BuildingController {
     }
 
     // Get all buildings //
+    //http://localhost:8080/api/buildings/all
     @GetMapping("/all")
     public List<Building> getAllBuildings() {
         return buildingService.getAllBuildings();
     }
 
     // Get building by id //
+    //http://localhost:8080/api/buildings/1
     @GetMapping("{id}")
     public ResponseEntity<Building> getBuildingById(@PathVariable ("id") long id) {
         return new ResponseEntity<Building>(buildingService.getBuildingById(id), HttpStatus.OK);

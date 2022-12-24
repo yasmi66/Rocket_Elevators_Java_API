@@ -1,8 +1,8 @@
 package jar.maven.springboot.service.impl;
 
 import jar.maven.springboot.exceptions.ResourceNotFoundException;
-import jar.maven.springboot.entities.User;
 import jar.maven.springboot.repositories.UserRepository;
+import jar.maven.springboot.entities.User;
 import jar.maven.springboot.services.UserService;
 import org.springframework.stereotype.Service;
 

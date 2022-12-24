@@ -19,12 +19,14 @@ public class ElevatorController {
     }
 
     // Get all elevators //
+    //http://localhost:8080/api/elevators/all
     @GetMapping("/all")
     public List<Elevator> getAllElevators(){
         return elevatorService.getAllElevators();
     }
 
     // Get elevator by id //
+    //http://localhost:8080/api/elevators/1
     @GetMapping("{id}")
     public ResponseEntity<Elevator> getElevatorById(@PathVariable ("id") long id){
         return new ResponseEntity<Elevator>(elevatorService.getElevatorById(id), HttpStatus.OK);

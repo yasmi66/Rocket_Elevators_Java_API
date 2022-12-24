@@ -19,6 +19,7 @@ public class BatteryController {
     }
 
     // Get all batteries //
+    //http://localhost:8080/api/batteries/all
     @GetMapping("/all")
     public List<Battery> getAllBatteries(){
         return batteryService.getAllBatteries();
