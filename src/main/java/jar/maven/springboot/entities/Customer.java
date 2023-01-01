@@ -1,10 +1,14 @@
 package jar.maven.springboot.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="customers")
 public class Customer {
@@ -12,7 +16,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    private int user_id;
 
     private String CompanyName;
 

@@ -1,8 +1,6 @@
 package jar.maven.springboot.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -10,32 +8,29 @@ import lombok.Data;
 @Table(name="elevators")
 public class Elevator {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long id;
-
     private Integer column_id;
-
-    private Integer serialNumber;
+    private Integer serial_nb;
 
     private String model;
 
-    private String elevatorType;
+    private String elevator_type;
 
-    private String status;
+    private String elevator_status;
 
-    private String commissioningDate;
+    private String date_commissioning;
 
-    private String lastInspection;
+    private String date_last_inspection;
 
-    private String inspectionCertificate;
+    private String certificate_inspection;
 
     private String information;
 
     private String notes;
-
-    private String created_at;
-
-    private String updated_at;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date updatedAt;
 }

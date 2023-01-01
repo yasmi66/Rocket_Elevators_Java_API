@@ -26,7 +26,6 @@ public class ColumnController {
     //http://localhost:8080/api/columns/all
     @GetMapping("/all")
     public List<Column> getAllColumns() {
-
         return columnService.getAllColumns();
     }
 

@@ -5,26 +5,23 @@ import jar.maven.springboot.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Repository
-@Controller
-@Service
+
+@Component
 public class JwtUtil {
     @Value("${app.jwt.secret}")
-    public static final String secret = "ShhhhItsASecret!";
+    private String secret;
 
-    public static String generateAccessToken(User user) {
+    public String generateAccessToken(User user){
+        System.out.print(user);
+        // Key key = Key.secretKeyFor(SignatureAlgorithm.HS512)
         return Jwts.builder()
                 .setSubject(String.format("%s,%s", user.getId(), user.getEmail()))
                 .signWith(SignatureAlgorithm.HS512, "secret")
                 .compact();
     }
-
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtUtil.class);
-
     public boolean validateAccessToken(String token) {
         try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
@@ -41,8 +38,8 @@ public class JwtUtil {
             LOGGER.error("Signature validation failed");
         }
         return false;
-    }
 
+    }
     public String getSubject(String token) {
         return parseClaims(token).getSubject();
     }
@@ -53,5 +50,6 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
 }
 

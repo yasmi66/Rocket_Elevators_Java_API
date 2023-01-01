@@ -2,46 +2,43 @@ package jar.maven.springboot.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import jakarta.persistence.Id;
-import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
 @Table(name="buildings")
 public class Building {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+ @Id
+ @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private long id;
-
-
-    private Integer customer_id;
+ private long id;
 
 
-    private String addressBuilding;
+ private Integer customer_id;
 
 
-    private String FullNameBuildingAdmin;
+ private String addressBuilding;
 
 
-    private String EmailAdminBuilding;
+ private String FullNameBuildingAdmin;
 
 
-    private String PhoneNumberBuildingAdmin;
+ private String EmailAdminBuilding;
 
 
-    private String FullNameTechContact;
+ private String PhoneNumberBuildingAdmin;
 
 
-    private String TechContactEmail;
+ private String FullNameTechContact;
 
 
-    private String TechContactPhone;
+ private String TechContactEmail;
 
 
-    private String created_at;
+ private String TechContactPhone;
 
 
-    private String updated_at;
+ private String created_at;
+
+
+ private String updated_at;
 }

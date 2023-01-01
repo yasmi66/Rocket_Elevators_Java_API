@@ -1,9 +1,8 @@
 package jar.maven.springboot.entities;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Id;
 import lombok.Data;
-import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
@@ -12,30 +11,15 @@ public class Column {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-
     private long id;
-
-
-    private Integer battery_id;
-
-
+    private Long battery_id;
     private String column_type;
-
-
-    private String served_floor_nb;
-
-
+    private Integer served_floor_nb;
     private String status;
-
-
     private String information;
-
-
     private String notes;
-
-
-    private String created_at;
-
-
-    private String updated_at;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date updatedAt;
 }

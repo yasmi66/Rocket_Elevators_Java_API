@@ -1,7 +1,7 @@
 package jar.maven.springboot.service.impl;
 
-import jar.maven.springboot.entities.Customer;
 import jar.maven.springboot.exceptions.ResourceNotFoundException;
+import jar.maven.springboot.entities.Customer;
 import jar.maven.springboot.repositories.CustomerRepository;
 import jar.maven.springboot.services.CustomerService;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-// CustomerServiceImpl is a class that implements the CustomerService interface
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
@@ -18,6 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
         super();
         this.customerRepository = customerRepository;
     }
+
     @Override
     public Customer saveCustomer(Customer customer) {
         return customerRepository.save(customer);
@@ -37,5 +37,4 @@ public class CustomerServiceImpl implements CustomerService {
             throw new ResourceNotFoundException("customers", "id", id);
         }
     }
-
 }

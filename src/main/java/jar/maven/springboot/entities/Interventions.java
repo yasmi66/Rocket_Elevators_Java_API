@@ -1,6 +1,7 @@
 package jar.maven.springboot.entities;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
@@ -12,29 +13,20 @@ public class Interventions {
 
     private long id;
     private int Author;
-
     private int CustomerID;
-
     private int BuildingID;
-
     private int BatteryID;
-
     private int ColumnID;
-
     private int ElevatorID;
-
     private int EmployeeID;
-
     private String StartDate;
-
     private String EndDate;
-
     private String Result;
     private String Report;
-
     private String Status;
-
-    private String created_at;
-    private String updated_at;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date updatedAt;
 }
 
