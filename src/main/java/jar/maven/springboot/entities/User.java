@@ -27,6 +27,10 @@ public class User implements UserDetails {
     @Column (name="id")
     private long id;
 
+    private String firstName;
+    private String lastName;
+    private String tile;
+
     @Column(name = "email")
     private String email;
     @JsonIgnore

@@ -67,7 +67,4 @@ public class ApplicationSecurity {
     }
     @Autowired
     private JwtTokenFilter jwtTokenFilter;
-
-
-
 }
