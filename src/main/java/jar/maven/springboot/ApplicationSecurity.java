@@ -1,5 +1,6 @@
-package jar.maven.springboot;
+package jar.maven.springboot.auth;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jar.maven.springboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,10 +15,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-public class ApplicationSecurity {
 
+public class ApplicationSecurity {
     @Autowired
     UserRepository userRepository;
 
@@ -43,28 +45,26 @@ public class ApplicationSecurity {
         return authConfig.getAuthenticationManager();
     }
     @Bean
-    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
+    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().anyRequest().permitAll();
 
-//        http.authorizeHttpRequests ()
-//                .requestMatchers("/api/**").permitAll()
-//                .anyRequest().authenticated();
-//        http.exceptionHandling()
-//                .authenticationEntryPoint(
-//                        (request, response, ex) -> {
-//                            response.sendError(
-//                                    HttpServletResponse.SC_UNAUTHORIZED,
-//                                    ex.getMessage()
-//                            );
-//                        }
-//                );
-//        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.authorizeHttpRequests ()
+                .requestMatchers("/api/**").permitAll()
+                .anyRequest().authenticated();
+        http.exceptionHandling()
+                .authenticationEntryPoint(
+                        (request, response, ex) -> {
+                            response.sendError(
+                                    HttpServletResponse.SC_UNAUTHORIZED,
+                                    ex.getMessage()
+                            );
+                        }
+                );
+
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-//   @Autowired
-//    private JwtTokenFilter jwtTokenFilter;
-
+    @Autowired
+    private JwtTokenFilter jwtTokenFilter;
 }

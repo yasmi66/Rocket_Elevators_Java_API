@@ -2,12 +2,17 @@ package jar.maven.springboot.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import jakarta.persistence.Column;
+
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Getter;
 import lombok.Setter;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Collection;
 
@@ -15,27 +20,27 @@ import java.util.Collection;
 @Entity
 @Table(name="users")
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column (name="id")
     private long id;
 
-    private String title;
-
     private String firstName;
-
     private String lastName;
+    private String tile;
 
+    @Column(name = "email")
     private String email;
     @JsonIgnore
+    @Column(name = "encrypted_password")
     private String encrypted_password;
 
-
+    @Column(name = "created_at")
     private String created_at;
 
+    @Column(name = "updated_at")
     private String updated_at;
 
     @JsonIgnore
@@ -79,5 +84,3 @@ public class User implements UserDetails {
         return true;
     }
 }
-
-
