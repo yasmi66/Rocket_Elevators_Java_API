@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Column;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,23 +23,17 @@ import java.util.Collection;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name="id")
     private long id;
 
-    private String firstName;
-    private String lastName;
-    private String tile;
-
-    @Column(name = "email")
+    @JsonIgnore
     private String email;
     @JsonIgnore
-    @Column(name = "encrypted_password")
     private String encrypted_password;
 
-    @Column(name = "created_at")
+
     private String created_at;
 
-    @Column(name = "updated_at")
+
     private String updated_at;
 
     @JsonIgnore
