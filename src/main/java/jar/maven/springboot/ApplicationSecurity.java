@@ -1,6 +1,7 @@
-package jar.maven.springboot.auth;
+package jar.maven.springboot;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jar.maven.springboot.auth.JwtTokenFilter;
 import jar.maven.springboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,8 +21,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 
 public class ApplicationSecurity {
+
     @Autowired
-    UserRepository userRepository;
+    private JwtTokenFilter jwtTokenFilter;
+    @Autowired
+    private UserRepository userRepository;
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -65,6 +69,5 @@ public class ApplicationSecurity {
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-    @Autowired
-    private JwtTokenFilter jwtTokenFilter;
+
 }
