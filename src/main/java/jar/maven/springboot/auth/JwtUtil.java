@@ -14,8 +14,6 @@ public class JwtUtil {
     private String secret;
 
     public String generateAccessToken(User user){
-        System.out.print(user);
-        // Key key = Key.secretKeyFor(SignatureAlgorithm.HS512)
         return Jwts.builder()
                 .setSubject(String.format("%s,%s", user.getId(), user.getEmail()))
                 .signWith(SignatureAlgorithm.HS512, "secret")
