@@ -18,8 +18,13 @@ import java.io.IOException;
 
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
+
     @Autowired
     private JwtUtil jwtUtil;
+
+//    public JwtTokenFilter(JwtUtil jwtUtil) {
+//        this.jwtUtil = jwtUtil;
+//    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -71,7 +76,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private UserDetails getUserDetails(String token) {
         User userDetails = new User();
-        String[] jwtSubject = jwtUtil.getSubject(token).split(",");
+        String[] jwtSubject;
+        jwtSubject = jwtUtil.getSubject(token).split(",");
 
         userDetails.setId(Integer.parseInt(jwtSubject[0]));
         userDetails.setEmail(jwtSubject[1]);
