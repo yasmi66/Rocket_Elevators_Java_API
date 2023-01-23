@@ -1,6 +1,6 @@
 # Rocket_Elevators_Java_API
 
-Built with Springboot , Java v19, Maiden v / Jar + mySQL  using IntelliJ (Used Dependencies : Rest services, lombok to reduce use/need for annotations, spring data jpa and H2 for communication with DB +  mysql driver dependencies):  springinitilizer to build initial project folder 
+Built with Springboot , Java v19, Maven v / Jar + mySQL  using IntelliJ (Used Dependencies : Rest services, lombok to reduce use/need for annotations, spring data jpa and H2 for communication with DB +  mysql driver dependencies):  springinitilizer to build initial project folder 
 
 3 layer architecture : Controller, Service, DAO
 
